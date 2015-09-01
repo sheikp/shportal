@@ -4,8 +4,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="page-wrapper">
-        <section id="main" class="container">
-					<h2>SDN Governance</h2>					
+        <section id="main" class="container">								
             <div class="row">
 						<div class="12u">
                             <section class="box">
@@ -34,7 +33,7 @@
 										</div>  
                                 <div class="row uniform 50%">
                                         <div class="6u">
-												<h4>List of Routers &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkRouterAdd" runat="server" OnClick="lnkRouterAdd_Click" Visible="false">Add</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkEditRout" OnClick="lnkEditRout_Click" runat="server" >Edit</asp:LinkButton></h4>
+												<h4>List of Routers &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkRouterAdd" runat="server" OnClick="lnkRouterAdd_Click" Visible="false">Add</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkEditRout" OnClick="lnkEditRout_Click" runat="server" >Change Policy Mapping</asp:LinkButton></h4>
 											</div>                                 
                                         <div class="6u">
 												<h4>Policies on selected Router &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkPolicyAdd" runat="server" OnClick="lnkPolicyAdd_Click">Add Policy</asp:LinkButton></h4>
@@ -52,7 +51,14 @@
 													<asp:ListBox ID="lstPolicy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="lstPolicy_SelectedIndexChanged"></asp:ListBox>
 												</div>
 											</div>            
-                                     </div>          
+                                     </div>         
+                                <div class="row uniform 50%">
+                                        <div class="12u">
+												<div class="select-wrapper">
+													<h4>Policy Information</h4>
+												</div>
+											</div>
+                                     </div>  
                                  <div class="row uniform 50%">
                                         <div class="12u">
 												<div class="select-wrapper">
@@ -79,7 +85,7 @@
 
    
     <div id="divRoutPopUp"class="box" style="width:800px">
-     <h3>Router Update</h3>   
+     <h3>Policy Mapping</h3>   
         <asp:Label ID="lblpopRmessage" runat="server"></asp:Label>
      <div class="row">
 						<div class="12u">
@@ -91,31 +97,54 @@
 												<textarea class="fit" runat="server" name="query" id="txtRouterName" rows="1" value="" placeholder="Router Name" />
 											</div>											
 										</div>  
-
-                                <div class="row uniform 50%">                                  
-                                        <div class="6u 12u(mobilep)">
-												<textarea class="fit" runat="server" name="query" id="txtRouterDescr" rows="2" value="" placeholder="Router Description" />
-											</div>											
-                                    <div class="6u 12u(mobilep)">
-												<asp:ListBox ID="lstInterfaces" runat="server"></asp:ListBox>
-											</div>											
-										</div>
-
-                                 <div class="row uniform">
+                                                              
+                                 <div class="row uniform 50%"">
                                         <div class="12u">
 												<ul class="actions">
-													<li class="5u"><asp:ListBox ID="lstPavbl" runat="server" SelectionMode="Multiple" ></asp:ListBox></li>
+													<li class="6u"><h4>Available Policies</h4></li>
+                                                    <li>&nbsp;</li>
+                                                    <li class="4u"><h4>Selected Policies</h4></li>
+                                                    </ul>
+												</div>
+											</div>
+                                 <div class="row uniform 50%"">
+                                        <div class="12u">
+												<ul class="actions">
+													<li class="5u"><asp:ListBox ID="lstPavbl" runat="server" SelectionMode="Multiple"  Rows="7" ></asp:ListBox></li>
                                                     <li><asp:Button runat="server" CssClass="button special small" ID="PMap" OnClick="PMap_Click" Text=">>" /><br /><br /><asp:Button CssClass="button special small" runat="server" ID="PuMap" OnClick="PuMap_Click" Text="<<" /></li>
-                                                    <li class="4u"><asp:ListBox ID="lstPmap" runat="server"  ></asp:ListBox></li>
+                                                    <li class="4u"><asp:ListBox ID="lstPmap" runat="server"  Rows="7"  ></asp:ListBox></li>
                                                     </ul>
 												</div>
 											</div>
                                  
+                                 <div class="row uniform 50%">                                  
+                                    
+                                     <div class="12u">
+                                         <ul class="actions">
+                                              <li class="6u"><h4>Selected Policies</h4></li>
+                                             <li >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
+												<li class="4u">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h4>Router Interfaces</h4></li>
+                                             
+                                             </ul>
+											</div>											
+										</div>
+                                   										
+                                    <div class="12u">
+                                         <ul class="actions">
+                                              <li class="5u"><asp:ListBox ID="lstPmap1" runat="server"  ></asp:ListBox></li>
+                                             <li><asp:Button runat="server" ID="routMapInterface" Text="Map" OnClick="routMapInterface_Click"  CssClass="alt" /></li> 
+												<li class="4u"><asp:ListBox ID="lstInterfaces" runat="server"></asp:ListBox></li>
+                                             
+                                             </ul>
+											</div>											
+										</div>
+                                
+
                                  <div class="row uniform">
 						                <div class="12u">
 							                <ul class="actions">
 								                <li><asp:Button runat="server" ID="routSave" Text="Update" OnClick="routSave_Click"/></li>
-                                                <li><asp:Button runat="server" ID="routMapInterface" Text="Map Interface" OnClick="routMapInterface_Click"  CssClass="alt" /></li>                                                                                                
+                                                                                                                                               
 								                <li><asp:Button runat="server" ID="routCancel" Text="Cancel" OnClick="routCancel_Click" CssClass="alt" /></li>                                                                                                
 							                </ul>
 						                </div>
@@ -189,9 +218,7 @@
                                                 
                                                 <asp:BoundField DataField="routersname" HeaderText="Router Name" 
                                                     SortExpression="routername" />
-
-                                                <asp:BoundField headertext="Description" DataField="routersDescription"         
-                                                      SortExpression="routersDescription"  />                                                                                           
+                                                                                                                                  
                                            
                                             </Columns>
                                         </asp:GridView>                                        
