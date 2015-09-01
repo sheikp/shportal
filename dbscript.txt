@@ -1,0 +1,50 @@
+CREATE DATABASE SDN;
+
+CREATE TABLE `cust_routers` (
+  `idcust_routers` int(11) NOT NULL,
+  `cust_id` int(11) DEFAULT NULL,
+  `router_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idcust_routers`)
+) ;
+
+CREATE TABLE `customers` (
+  `idcustomers` int(11) NOT NULL,
+  `customerNumber` varchar(45) DEFAULT NULL,
+  `customerName` varchar(100) DEFAULT NULL,
+  `Location` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idcustomers`)
+) ;
+
+CREATE TABLE `policy` (
+  `idpolicy` int(11) NOT NULL,
+  `policyName` varchar(45) DEFAULT NULL,
+  `policyDescription` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`idpolicy`)
+) ;
+
+CREATE TABLE `rout_policy` (
+  `idrout_policy` int(11) NOT NULL,
+  `router_id` int(11) DEFAULT NULL,
+  `policy_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idrout_policy`)
+) ;
+
+
+CREATE TABLE `routers` (
+  `idrouters` int(11) NOT NULL,
+  `routersName` varchar(45) DEFAULT NULL,
+  `routersDescription` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`idrouters`)
+) ;
+
+
+CREATE TABLE `users` (
+  `idusers` int(11) NOT NULL,
+  `uname` varchar(100) DEFAULT NULL,
+  `pwd` varchar(45) DEFAULT NULL,
+  `role` varchar(45) DEFAULT NULL,
+  `modifiedon` datetime DEFAULT NULL,
+  `modifiedby` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idusers`)
+) ;
+
