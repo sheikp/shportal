@@ -157,24 +157,6 @@ namespace SDNPortal {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtRouterName;
         
         /// <summary>
-        /// txtRouterDescr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtRouterDescr;
-        
-        /// <summary>
-        /// lstInterfaces control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstInterfaces;
-        
-        /// <summary>
         /// lstPavbl control.
         /// </summary>
         /// <remarks>
@@ -211,13 +193,13 @@ namespace SDNPortal {
         protected global::System.Web.UI.WebControls.ListBox lstPmap;
         
         /// <summary>
-        /// routSave control.
+        /// lstPmap1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button routSave;
+        protected global::System.Web.UI.WebControls.ListBox lstPmap1;
         
         /// <summary>
         /// routMapInterface control.
@@ -227,6 +209,24 @@ namespace SDNPortal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button routMapInterface;
+        
+        /// <summary>
+        /// lstInterfaces control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lstInterfaces;
+        
+        /// <summary>
+        /// routSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button routSave;
         
         /// <summary>
         /// routCancel control.

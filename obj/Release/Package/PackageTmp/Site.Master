@@ -6,14 +6,15 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - SDN Portal</title>
+    <title><%: Page.Title %> - Traffic Shaping Policy Management</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="Content/main.css" />
+   <link rel="stylesheet" href="Content/main.css" />
+    <!--<link rel="stylesheet" href="Content/style.css" />  -->
 
 </head>
 <body>
@@ -39,7 +40,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+       <div class="navbar navbar-inverse navbar-fixed-top" style="    background-color:#ff2222;  border-color: #080808;  font-weight:bold;">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -47,18 +48,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">SDN Portal</a>
+                    <a class="navbar-brand" style="    color: #ffffff;  background-color: maroon;" runat="server" href="~/">Traffic Shaping Policy Management</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>                       
+                    <ul class="nav navbar-nav" style="color: ghostwhite;">
+                        <li><a runat="server" style="color: ghostwhite;" href="~/">Home</a></li>
+                        <li><a runat="server" style="color: ghostwhite;" href="~/About">About</a></li>                       
                     </ul>
-                  <!--  <asp:LoginView runat="server" ViewStateMode="Disabled">
+                   <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
+                                <li><a  style="color: ghostwhite;" runat="server" href="~/Account/Register">Register</a></li>
+                                <li><a  style="color: ghostwhite;" runat="server" href="~/Account/Login">Log in</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
@@ -69,11 +70,12 @@
                                 </li>
                             </ul>
                         </LoggedInTemplate>
-                    </asp:LoginView> -->
+                    </asp:LoginView> 
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+
+        <div class="container body-content" >
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
@@ -89,6 +91,7 @@
 			<script src="Scripts/skel.min.js"></script>
 			<script src="Scripts/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="Scripts/main.js"></script>
+			<script src="Scripts/main.js"></script>          
+            
 </body>
 </html>

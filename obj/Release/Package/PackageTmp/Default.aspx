@@ -2,9 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="page-wrapper">
-        <section id="main" class="container">
-					<h2>SDN Governance</h2>					
+    <div class="page-wrapper" >
+        <section id="main" class="container" >
+					
+            <img src="img/banner1.jpg" width="100%" />			
             <div class="row">
 						<div class="12u">
                             <section class="box">

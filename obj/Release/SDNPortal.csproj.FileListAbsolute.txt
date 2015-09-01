@@ -66,3 +66,4 @@ c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\bin\Microsoft.Owin.Secu
 c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\obj\Release\SDNPortal.csprojResolveAssemblyReference.cache
 c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\obj\Release\SDNPortal.dll
 c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\obj\Release\SDNPortal.pdb
+c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\bin\AjaxControlToolkit.dll

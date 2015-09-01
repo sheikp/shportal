@@ -56,12 +56,12 @@ namespace SDNPortal
         protected void GetCustomerData(string custNumber)
         {
             connection.Open();
-            string query1 = String.Format("SELECT * FROM customers where customernumber = {0}", custNumber.ToString()) ;
-            int custid=0;
+            string query1 = String.Format("SELECT * FROM customers where customernumber = {0}", custNumber.ToString());
+            int custid = 0;
             MySqlCommand cmd1 = new MySqlCommand(query1, connection);
 
             MySqlDataReader dr = cmd1.ExecuteReader();
-            if(dr.HasRows)
+            if (dr.HasRows)
             {
                 dr.Read();
                 custid = dr.GetInt32(0);
@@ -83,36 +83,62 @@ namespace SDNPortal
             lstRouters.DataValueField = "idrouters";
             lstRouters.DataBind();
             lstRouters.SelectedIndex = 0;
-        
+
             connection.Close();
 
+            //string NodesList = API_Get(GetNodesLink());
+
+            //JObject joResponse = JObject.Parse(NodesList);
+            //JObject ojObject = (JObject)joResponse["nodes"];            
+            //JArray array = (JArray)ojObject["node"];
+            //lstInterfaces.Items.Clear();
+            //for (int i = 0; i < array.Count; i++)
+            //{
+            //    lstRouters.Items.Add(array[i]["id"].ToString());
+            //}
+            //txtRouterDescr.Value = "";
         }
 
         protected void lstRouters_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            {                
-                connection.Open();
-            
-                string query3 = String.Format("SELECT * FROM policy where idpolicy in (select policy_id from rout_policy where router_id = {0})", lstRouters.SelectedValue);
+            {
+                //connection.Open();
 
-                MySqlCommand cmd3 = new MySqlCommand(query3, connection);
-                MySqlDataAdapter adp = new MySqlDataAdapter(cmd3);
-                DataSet ds2 = new DataSet();
-                adp.Fill(ds2);
+                //string query3 = String.Format("SELECT * FROM policy where idpolicy in (select policy_id from rout_policy where router_id = {0})", lstRouters.SelectedValue);
 
-                lstPolicy.DataSource = ds2.Tables[0];
-                lstPolicy.DataTextField = "policyname";
-                lstPolicy.DataValueField = "idpolicy";
-                lstPolicy.DataBind();
-                if(ds2.Tables[0].Rows.Count>0)
-                { 
-                    lstPolicy.SelectedIndex = 0;
-                    connection.Close();
-                    lstPolicy_SelectedIndexChanged(sender, e);
+                //MySqlCommand cmd3 = new MySqlCommand(query3, connection);
+                //MySqlDataAdapter adp = new MySqlDataAdapter(cmd3);
+                //DataSet ds2 = new DataSet();
+                //adp.Fill(ds2);
+
+                //lstPolicy.DataSource = ds2.Tables[0];
+                //lstPolicy.DataTextField = "policyname";
+                //lstPolicy.DataValueField = "idpolicy";
+                //lstPolicy.DataBind();
+                //if (ds2.Tables[0].Rows.Count > 0)
+                //{
+                //    lstPolicy.SelectedIndex = 0;
+                //    connection.Close();
+                //    lstPolicy_SelectedIndexChanged(sender, e);
+                //}
+                //else
+                //    connection.Close();
+
+                string PolicyList = API_Get(GetPolicyList(lstRouters.SelectedItem.Text));
+
+                JObject joResponse = JObject.Parse(PolicyList);
+                JObject ojObject = (JObject)joResponse["policy"];
+                JArray array = (JArray)ojObject["vyatta-policy-qos:qos"];
+                lstPolicy.Items.Clear();
+                for (int i = 0; i < array.Count; i++)
+                {
+                    lstPolicy.Items.Add(array[i]["tagnode"].ToString());
                 }
-                else
-                    connection.Close();
+                if (lstPolicy.Items.Count > 0)
+                    lstPolicy.SelectedIndex = 0;
+                lstPolicy_SelectedIndexChanged(sender, e);
+
             }
             catch(Exception ex)
             {
@@ -141,7 +167,7 @@ namespace SDNPortal
         {
             mpePopUp3.Show();
             connection.Open();
-            string query = String.Format("SELECT rp.router_id, routersName, routersDescription FROM rout_policy rp join routers r on rp.router_id = r.idrouters join cust_routers cr on r.idrouters = cr.router_id join customers c on cr.cust_id = c.idcustomers where rp.policy_id = {0}", lstPolicy.SelectedItem.Value);
+            string query = String.Format("SELECT rp.router_id, routersName FROM policy p join rout_policy rp on p.idpolicy = rp.policy_id join routers r on rp.router_id = r.idrouters join cust_routers cr on r.idrouters = cr.router_id join customers c on cr.cust_id = c.idcustomers where p.policyname = '{0}'", lstPolicy.SelectedItem.Text);
 
             MySqlCommand cmd = new MySqlCommand(query, connection);
             //Create a data reader and Execute the command
@@ -219,7 +245,7 @@ namespace SDNPortal
                 {
                     lstInterfaces.Items.Add(array[i]["tagnode"].ToString());
                 }
-                txtRouterDescr.Value = "";
+                //txtRouterDescr.Value = "";
             }
         }
 
@@ -241,7 +267,7 @@ namespace SDNPortal
                 JObject joResponse = JObject.Parse(responseText);                
                 JArray array = (JArray)joResponse["vyatta-interfaces-dataplane:dataplane"];                
                 pushinterface = pushinterface + "\"" + array[0]["tagnode"].ToString() + "\", \"vyatta-policy-qos:qos-policy\": ";
-                pushinterface = pushinterface + "\"" + lstPmap.SelectedItem.Text + "\", \"address\": ";
+                pushinterface = pushinterface + "\"" + lstPmap1.SelectedItem.Text + "\", \"address\": ";
                 pushinterface = pushinterface + array[0]["address"].ToString() + "}]}";
 
             }
@@ -291,32 +317,31 @@ namespace SDNPortal
             }                    
         }
 
-        protected void btnAPI_Click(object sender, EventArgs e)
+        protected string API_Get(string APIURL)
         {
 
             // Test REST API access
-            string PolicyRequest = CreateRequest(lstRouters.SelectedItem.Text, lstPolicy.SelectedItem.Text);
-            string NodesRequest = GetNodesLink();
-            string PolicyListRequest = GetPolicyList(lstRouters.SelectedItem.Text);
-            string InterfaceListRequest = GetInterfaces(lstRouters.SelectedItem.Text);
-            string InterfaceDetailRequest = GetInterfaceDetail(lstRouters.SelectedItem.Text, "dp0p160p1");
+            //string PolicyRequest = CreateRequest(lstRouters.SelectedItem.Text, lstPolicy.SelectedItem.Text);
+            //string NodesRequest = GetNodesLink();
+            //string PolicyListRequest = GetPolicyList(lstRouters.SelectedItem.Text);
+            //string InterfaceListRequest = GetInterfaces(lstRouters.SelectedItem.Text);
+            //string InterfaceDetailRequest = GetInterfaceDetail(lstRouters.SelectedItem.Text, "dp0p160p1");
           
-            WebRequest req = WebRequest.Create(InterfaceDetailRequest);
+            WebRequest req = WebRequest.Create(APIURL);
             req.Method = "GET";
             //req.Headers["Authorization"] = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes("admin:admin"));            
             HttpWebResponse resp = req.GetResponse() as HttpWebResponse;
             var encoding = ASCIIEncoding.ASCII;
             using (var reader = new System.IO.StreamReader(resp.GetResponseStream(), encoding))
             {
-                string responseText = reader.ReadToEnd();
-                description.Value = responseText;
+                return reader.ReadToEnd();                
             }          
 
         }
 
         protected string CreateRequest(string routername, string policyname)
         {
-            string UrlRequest = ConfigurationManager.AppSettings["APILink"].ToString() + routername +
+            string UrlRequest = ConfigurationManager.AppSettings["APILink"].ToString() + "node/" + routername +
                 "/yang-ext:mount/vyatta-policy:policy/vyatta-policy-qos:qos/" + policyname + "/";
                                  
             return (UrlRequest);
@@ -330,19 +355,19 @@ namespace SDNPortal
 
         protected string GetPolicyList(string routername)
         {
-            string UrlRequest = ConfigurationManager.AppSettings["APILink"].ToString() + routername + "/yang-ext:mount/vyatta-policy:policy/";
+            string UrlRequest = ConfigurationManager.AppSettings["APILink"].ToString() + "node/" + routername + "/yang-ext:mount/vyatta-policy:policy/";
             return (UrlRequest);
         }
 
         protected string GetInterfaces(string routername)
         {
-            string UrlRequest = ConfigurationManager.AppSettings["APILink"].ToString() + routername + "/yang-ext:mount/vyatta-interfaces:interfaces";
+            string UrlRequest = ConfigurationManager.AppSettings["APILink"].ToString() + "node/" + routername + "/yang-ext:mount/vyatta-interfaces:interfaces";
             return (UrlRequest);
         }
 
         protected string GetInterfaceDetail( string routername, string interfacename)
         {
-            string UrlRequest = ConfigurationManager.AppSettings["APILink"].ToString() + routername + "/yang-ext:mount/vyatta-interfaces:interfaces/vyatta-interfaces-dataplane:dataplane/" + interfacename;
+            string UrlRequest = ConfigurationManager.AppSettings["APILink"].ToString() + "node/" + routername + "/yang-ext:mount/vyatta-interfaces:interfaces/vyatta-interfaces-dataplane:dataplane/" + interfacename;
             return (UrlRequest);
         }      
                
@@ -357,7 +382,7 @@ namespace SDNPortal
             { 
                 connection.Open();
 
-                string squery = String.Format("insert into routers select max(idrouters)+1, '{0}','{1}' from routers", txtRouterName.Value,txtRouterDescr.Value);
+                string squery = String.Format("insert into routers select max(idrouters)+1, '{0}','{1}' from routers", txtRouterName.Value,"");
                 MySqlCommand cmd1 = new MySqlCommand(squery, connection);
                 int updatestatus = cmd1.ExecuteNonQuery();
 
@@ -387,7 +412,7 @@ namespace SDNPortal
             {                
                 connection.Open();
                 string routid = lstRouters.SelectedItem.Value;
-                string squery = String.Format("update routers set routersdescription = '{0}' where idrouters = {1}", txtRouterDescr, routid);
+                string squery = String.Format("update routers set routersdescription = '{0}' where idrouters = {1}", "", routid);
                 MySqlCommand cmd1 = new MySqlCommand(squery, connection);
                 int updatestatus = cmd1.ExecuteNonQuery();
 
@@ -435,6 +460,7 @@ namespace SDNPortal
             {
                 ListItem avl = new ListItem(lstPavbl.Items[li].Text, lstPavbl.Items[li].Value);
                 lstPmap.Items.Add(avl);
+                lstPmap1.Items.Add(avl);
             }
             mpePopUp.Show();
         }
@@ -443,6 +469,7 @@ namespace SDNPortal
             foreach (int li in lstPmap.GetSelectedIndices())
             {
                 lstPmap.Items.Remove(lstPmap.Items[li]);
+                lstPmap1.Items.Remove(lstPmap1.Items[li]);
             }
             mpePopUp.Show();
         }
@@ -549,28 +576,10 @@ namespace SDNPortal
                 if (cb != null && cb.Checked)
                 {
                     chkcount += 1;
-                }
-                    
-            }
-            if(CustomersGrid.Rows.Count == chkcount)
-            {
-                connection.Open();
-
-                string query5 = String.Format("update policy set policydescription = '{0}' where idpolicy = {1}", description.Value.Replace(@"""", @"\""").Replace(@"'", @"\'"), lstPolicy.SelectedValue);
-
-                MySqlCommand cmd4 = new MySqlCommand(query5, connection);
-                int updatestatus = cmd4.ExecuteNonQuery();
-                Push_Policy("AddPolicy", lstRouters.SelectedItem.Text , lstPolicy.SelectedItem.Text, description.Value);
-
-                connection.Close();
-            }
-            else
-            {
-                hidimpact.Value = "Yes";
-                txtNewPloicyName.Value = "Copy of " + lstPolicy.SelectedItem.Text;
-                txtNewPolicyDescr.Value = description.Value;
-                mpePopUp2.Show();
-            }
+                }                    
+            }          
+                for(int i =0; i<chkcount; i++)
+                    Push_Policy("AddPolicy", CustomersGrid.Rows[i].Cells[2].Text , lstPolicy.SelectedItem.Text, description.Value);             
 
             mpePopUp3.Hide();
         }
@@ -582,9 +591,11 @@ namespace SDNPortal
             //txtRouterName.Disabled = true;
             Get_Interfaces();
             lstPmap.Items.Clear();
+            lstPmap1.Items.Clear();
             foreach(ListItem li in lstPolicy.Items)
             {
                 lstPmap.Items.Add(li);
+                lstPmap1.Items.Add(li);
             }
 
         }

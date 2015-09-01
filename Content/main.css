@@ -2013,7 +2013,7 @@
 		appearance: none;
 		background: #f8f8f8;
 		border-radius: 6px;
-		border: solid 1px #e5e5e5;
+		border: solid 1px #757575;
 		color: inherit;
 		display: block;
 		outline: 0;
@@ -2616,7 +2616,7 @@
 		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		background-color: #666;
+		background-color: #666;        
 		border-radius: 6px;
 		border: 0;
 		color: #ffffff;
@@ -3207,7 +3207,7 @@
 		#cta textarea {
 			color: #ffffff;
 			background: rgba(255, 255, 255, 0.15);
-			border: 0;
+			border: 0;            
 		}
 
 			#cta input[type="text"]:focus,

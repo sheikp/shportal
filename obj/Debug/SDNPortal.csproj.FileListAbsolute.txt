@@ -61,7 +61,6 @@ c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\bin\Microsoft.Owin.Secu
 c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\bin\Microsoft.Owin.Security.Twitter.xml
 c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\bin\Microsoft.Owin.Security.OAuth.xml
-c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\obj\Debug\SDNPortal.csprojResolveAssemblyReference.cache
 c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\obj\Debug\SDNPortal.dll
 c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\obj\Debug\SDNPortal.pdb
 c:\Sheik\visual studio 2015\Projects\SDNPortal\SDNPortal\bin\MySql.Data.dll

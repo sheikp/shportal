@@ -33,10 +33,10 @@
 										</div>  
                                 <div class="row uniform 50%">
                                         <div class="6u">
-												<h4>List of Routers &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkRouterAdd" runat="server" OnClick="lnkRouterAdd_Click" Visible="false">Add</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkEditRout" OnClick="lnkEditRout_Click" runat="server" >Change Policy Mapping</asp:LinkButton></h4>
+												<h4>List of Routers &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkRouterAdd" runat="server" OnClick="lnkRouterAdd_Click" Visible="false">Add</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkEditRout" OnClick="lnkEditRout_Click" runat="server"><span style="border:1px solid red;padding:5px; background:#e3e3e3">Change Policy Mapping</span></asp:LinkButton></h4>
 											</div>                                 
                                         <div class="6u">
-												<h4>Policies on selected Router &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkPolicyAdd" runat="server" OnClick="lnkPolicyAdd_Click">Add Policy</asp:LinkButton></h4>
+												<h4>Policies on selected Router &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkPolicyAdd" runat="server" OnClick="lnkPolicyAdd_Click"><span style="border:1px solid red;padding:5px; background:#e3e3e3">Add Policy</span></asp:LinkButton></h4>
 										</div>            
                                      </div>        
                                 <div class="row uniform 50%">
@@ -101,8 +101,8 @@
                                  <div class="row uniform 50%"">
                                         <div class="12u">
 												<ul class="actions">
-													<li class="6u"><h4>Available Policies</h4></li>
-                                                    <li>&nbsp;</li>
+													<li class="5u"><h4>Available Policies</h4></li>
+                                                    <li class="2u">&nbsp;</li>
                                                     <li class="4u"><h4>Selected Policies</h4></li>
                                                     </ul>
 												</div>
@@ -110,9 +110,9 @@
                                  <div class="row uniform 50%"">
                                         <div class="12u">
 												<ul class="actions">
-													<li class="5u"><asp:ListBox ID="lstPavbl" runat="server" SelectionMode="Multiple"  Rows="7" ></asp:ListBox></li>
-                                                    <li><asp:Button runat="server" CssClass="button special small" ID="PMap" OnClick="PMap_Click" Text=">>" /><br /><br /><asp:Button CssClass="button special small" runat="server" ID="PuMap" OnClick="PuMap_Click" Text="<<" /></li>
-                                                    <li class="4u"><asp:ListBox ID="lstPmap" runat="server"  Rows="7"  ></asp:ListBox></li>
+													<li class="5u"><asp:ListBox ID="lstPavbl" runat="server" SelectionMode="Multiple"  Rows="6" ></asp:ListBox></li>
+                                                    <li class="2u"><asp:Button runat="server" CssClass="button special small" ID="PMap" OnClick="PMap_Click" Text=">>" /><br /><br /><asp:Button CssClass="button special small" runat="server" ID="PuMap" OnClick="PuMap_Click" Text="<<" /></li>
+                                                    <li class="4u"><asp:ListBox ID="lstPmap" runat="server"  Rows="6"  ></asp:ListBox></li>
                                                     </ul>
 												</div>
 											</div>
@@ -121,9 +121,9 @@
                                     
                                      <div class="12u">
                                          <ul class="actions">
-                                              <li class="6u"><h4>Selected Policies</h4></li>
-                                             <li >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> 
-												<li class="4u">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h4>Router Interfaces</h4></li>
+                                              <li class="5u"><h4>Selected Policies</h4></li>
+                                             <li class="2u">&nbsp;</li> 
+												<li class="4u"><h4>Router Interfaces</h4></li>
                                              
                                              </ul>
 											</div>											
@@ -132,7 +132,7 @@
                                     <div class="12u">
                                          <ul class="actions">
                                               <li class="5u"><asp:ListBox ID="lstPmap1" runat="server"  ></asp:ListBox></li>
-                                             <li><asp:Button runat="server" ID="routMapInterface" Text="Map" OnClick="routMapInterface_Click"  CssClass="alt" /></li> 
+                                             <li><asp:Button runat="server" ID="routMapInterface" Text="Map" OnClick="routMapInterface_Click"  CssClass="button special small" /></li> 
 												<li class="4u"><asp:ListBox ID="lstInterfaces" runat="server"></asp:ListBox></li>
                                              
                                              </ul>
