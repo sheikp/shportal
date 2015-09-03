@@ -33,10 +33,10 @@
 										</div>  
                                 <div class="row uniform 50%">
                                         <div class="6u">
-												<h4>List of Routers &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkRouterAdd" runat="server" OnClick="lnkRouterAdd_Click" Visible="false">Add</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkEditRout" OnClick="lnkEditRout_Click" runat="server"><span style="border:1px solid red;padding:5px; background:#e3e3e3">Change Policy Mapping</span></asp:LinkButton></h4>
+												<h4>List of Routers &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkRouterAdd" runat="server" OnClick="lnkRouterAdd_Click" Visible="false">Add</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkEditRout" OnClick="lnkEditRout_Click" runat="server" Visible="false"><span style="border:1px solid red;padding:5px; background:#e3e3e3">Change Policy Mapping</span></asp:LinkButton></h4>
 											</div>                                 
                                         <div class="6u">
-												<h4>Policies on selected Router &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkPolicyAdd" runat="server" OnClick="lnkPolicyAdd_Click"><span style="border:1px solid red;padding:5px; background:#e3e3e3">Add Policy</span></asp:LinkButton></h4>
+												<h4>Policies on selected Router &nbsp;&nbsp;<asp:LinkButton ID="lnkModify" runat="server" OnClick="lnkModify_Click"><span style="color:#ffffff;font-size:medium; padding:5px; background:#666">View / Modify</span></asp:LinkButton>&nbsp;&nbsp;<asp:LinkButton ID="lnkPolicyAdd" runat="server" OnClick="lnkPolicyAdd_Click"><span style="color:#ffffff; font-size:medium ;padding:5px; background:#666">Add Policy</span></asp:LinkButton></h4>
 										</div>            
                                      </div>        
                                 <div class="row uniform 50%">
@@ -52,14 +52,14 @@
 												</div>
 											</div>            
                                      </div>         
-                                <div class="row uniform 50%">
+                                <div class="row uniform 50%" style="display:none">
                                         <div class="12u">
 												<div class="select-wrapper">
 													<h4>Policy Information</h4>
 												</div>
 											</div>
                                      </div>  
-                                 <div class="row uniform 50%">
+                                 <div class="row uniform 50%" style="display:none">
                                         <div class="12u">
 												<div class="select-wrapper">
 													<textarea name="message" id="description" placeholder="Policy Description" rows="6" runat="server"></textarea>
@@ -69,7 +69,7 @@
                                  <div class="row uniform">
 						                <div class="12u">
 							                <ul class="actions">
-								                <li><asp:Button runat="server" ID="btnSave" Text="Save Policy Detail" OnClick="btnSave_Click" /></li>
+								                <li><asp:Button runat="server" ID="btnSave" Text="Change Policy Mapping" OnClick="lnkEditRout_Click" /></li>
 								                <li><asp:Button runat="server" ID="btnCancel" Text="Cancel" OnClick="btnCancel_Click" CssClass="alt" /></li>    
 							                </ul>
 						                </div>
@@ -137,7 +137,7 @@
                                              
                                              </ul>
 											</div>											
-										</div>
+										
                                 
 
                                  <div class="row uniform">
@@ -151,8 +151,9 @@
 					                </div>
                                 </section>
 						</div>
+         </div>
 					</div> 
-    </div>
+    
     
 
     <asp:Label ID="lblHid2" runat="server" Text=""></asp:Label>
@@ -181,7 +182,7 @@
                                  <div class="row uniform">
 						                <div class="12u">
 							                <ul class="actions">
-								                <li><asp:Button runat="server" ID="polySave" Text="Add Policy Detail" OnClick="polySave_Click"/></li>
+								                <li><asp:Button runat="server" ID="polySave" Text="Save Policy Detail" OnClick="polySave_Click"/></li>
 								                <li><asp:Button runat="server" ID="polyCancel" Text="Cancel" CssClass="alt" OnClick="polyCancel_Click" /></li>                                                                                                
 							                </ul>
 						                </div>
