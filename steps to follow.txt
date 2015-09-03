@@ -1,0 +1,22 @@
+Install IIS, ASP.NET 4.5
+- Control Panel -> Programs and Features -> Turn Windows features on or off -> Enable Internet Information Services, .NET Framework 4.5 -> ASP.NET 4.5
+
+MY SQL 
+- Download MY SQL Workbench from net, install (while install, it will ask to set root password for db, set 'verizon123')
+
+Github path - https://github.com/sheikp/shportal
+
+Copy paste the content from "dbscript.txt" in MySQL Workbench one by one comments..
+
+Change value of key "APILink" in "Web.config" file for BVC Controller IP.
+
+Download the full path of Github link given and place it in "C:\inetpub\wwwroot\sdnportal"
+
+Open IIS manager (Windows Run - type command "inetmgr")
+
+Expand till Default Web Site and Right Click -> Add Application and follow screen (websetup in iis.jpg)
+
+Restart IIS to complete the setup. 
+
+Portal will be available in "localhost/sdnportal/default.aspx"
+
