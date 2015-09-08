@@ -101,9 +101,9 @@
                                  <div class="row uniform 50%"">
                                         <div class="12u">
 												<ul class="actions">
-													<li class="5u"><h4>Available Policies</h4></li>
+													<li class="5u"><h4>Inventory of Policies</h4></li>
                                                     <li class="2u">&nbsp;</li>
-                                                    <li class="4u"><h4>Selected Policies</h4></li>
+                                                    <li class="4u"><h4>Policies in Router</h4></li>
                                                     </ul>
 												</div>
 											</div>
